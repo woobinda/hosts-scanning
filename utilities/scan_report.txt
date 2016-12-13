@@ -1,7 +1,0 @@
-Host: 127.0.0.1 (localhost)
-
-Protocol: tcp
-
-port : 80	state : open	product : nginx
-port : 631	state : open	product : CUPS
-port : 3306	state : open	product : MySQL
