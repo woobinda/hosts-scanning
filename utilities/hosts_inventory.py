@@ -4,14 +4,11 @@ import nmap
 def hosts_inventory(network):
     nm = nmap.PortScanner()
     nm_list = nm.scan(hosts=network, arguments='-sS -O')
-    try:
-        if nm_list['nmap']['scaninfo']['error']:
-            print('\n')
-            print(nm_list['nmap']['scaninfo']['error'])
-            print('\n')
-            return
-    except KeyError:
-        pass
+    if 'error' in nm_list['nmap']['scaninfo']:
+        print('\n')
+        print(nm_list['nmap']['scaninfo']['error'])
+        print('\n')
+        return
 
     types_list = []
     hosts_list = []
