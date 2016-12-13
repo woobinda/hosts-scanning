@@ -4,9 +4,14 @@ import nmap
 def hosts_inventory(network):
     nm = nmap.PortScanner()
     nm_list = nm.scan(hosts=network, arguments='-sS -O')
-    if not nm_list['scan']:
-        print('\n!!!Invalid ip_address or domain_name!!!\n')
-        return
+    try:
+        if nm_list['nmap']['scaninfo']['error']:
+            print('\n')
+            print(nm_list['nmap']['scaninfo']['error'])
+            print('\n')
+            return
+    except KeyError:
+        pass
 
     types_list = []
     hosts_list = []
@@ -56,6 +61,6 @@ def hosts_inventory(network):
 
 if __name__ == '__main__':
     start = raw_input('\nHello, Press any key for start...\n')
-    network = raw_input('Enter the network to scan (format: x.x.x.x/mask): ')
-    print('\nStarting hosts inventory. Network: %s\nPlease wait...' % network)
+    network = raw_input('Enter the network (format: x.x.x.x/mask) or ip to scan: ')
+    print('\nStarting hosts inventory. Hosts: %s\nPlease wait...' % network)
     hosts_inventory(network)

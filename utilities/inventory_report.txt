@@ -1,0 +1,6 @@
+Network: 54.93.45.98
+
+Devive type - general purpose:
+1. ip_address = 54.93.45.98, hostname = ec2-54-93-45-98.eu-central-1.compute.amazonaws.com, OS = Linux
+
+

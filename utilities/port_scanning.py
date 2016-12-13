@@ -4,9 +4,14 @@ import nmap
 def port_scan(host, filename='scan_report.txt'):
     nm = nmap.PortScanner()
     nm_list = nm.scan(host, '1-5000')
-    if not nm_list['scan']:
-        print('\n!!!Invalid ip_address or domain_name!!!\n')
-        return
+    try:
+        if nm_list['nmap']['scaninfo']['error']:
+            print('\n')
+            print(nm_list['nmap']['scaninfo']['error'])
+            print('\n')
+            return
+    except KeyError:
+        pass
 
     with open(filename, 'w') as report:
         for host in nm.all_hosts():
